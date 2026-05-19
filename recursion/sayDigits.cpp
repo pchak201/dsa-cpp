@@ -17,5 +17,5 @@ void sayDigits(int n)
     if (n==0)
         return; 
     sayDigits(n/10); 
-    cout<< digits[n%10] << " " ; 
-}
+    cout<< digits[n%10] << " "; 
+} 
