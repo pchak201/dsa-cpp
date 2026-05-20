@@ -19,3 +19,5 @@ int climbStairs(int n)
         return 0; 
     return climbStairs(n-1) + climbStairs(n-2); 
 }
+
+// the solution is correct but not optimized - so it doesn't pass the leetcode test cases - dynamic programming fixed this

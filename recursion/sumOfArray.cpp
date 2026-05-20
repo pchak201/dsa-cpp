@@ -12,8 +12,16 @@ int main()
 
 int sumArray(int *arr, int n, int sum)
 { 
-    if (n==0)
+    if (n<=0)
         return sum; 
-    else 
-        sumArray(arr+1, n-1, sum+arr[0]); 
+    return sumArray(arr+1, n-1, sum+arr[0]); 
 }
+
+// alternative answer : 
+// int sumArray(int* arr, int n)
+// {
+//     if(n == 0)
+//         return 0;
+
+//     return arr[0] + sumArray(arr + 1, n - 1);
+// }

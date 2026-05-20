@@ -10,12 +10,12 @@ int main()
     if (isSorted(arr,size))
         cout<< "The array is sorted\n"; 
     else 
-        cout<< "The array is not sorted" << std::endl; 
+        cout<< "The array is not sorted" ; 
 }
 
 bool isSorted(int* arr,int size)
 { 
-    if (size==1)
+    if (size<=1)
         return true; 
     else if (arr[0]>arr[1])
         return false; 
