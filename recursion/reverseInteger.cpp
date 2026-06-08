@@ -11,9 +11,11 @@ int main()
     cout<< "The reverse of " << n << " is " << reverseInt(n); 
 }
 
+// tail/accumulator type recursion 
 int reverseInt(int n, int rev)
 { 
     if (n==0)
         return rev; 
-    return reverseInt(n/10,(rev*10)+n%10 ); 
+    rev = (rev*10)+(n%10); 
+    return reverseInt(n/10,rev) ; 
 }

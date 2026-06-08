@@ -18,9 +18,9 @@ int main()
 
 bool linearSearch(int *arr, int size, int key)
 { 
-    if (size==0)
+    if(size==0)
         return false; 
-    else if (arr[0]==key)
-        return true; 
-    return linearSearch(arr+1,size-1,key); 
+    if (arr[0]==key)
+        return true;
+    return linearSearch(arr+1,size-1,key);
 }

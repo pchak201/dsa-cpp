@@ -1,7 +1,9 @@
 #include <iostream>
 using std::cout, std::cin; 
 
-int sumArray(int*, int,int=0); 
+
+// int sumArray(int*,int); 
+// int sumArray(int*,int,int=0); 
 
 int main()
 { 
@@ -10,12 +12,13 @@ int main()
     cout<< "The sum of the elements of the array are : " << sumArray(arr,n); 
 }
 
-int sumArray(int *arr, int n, int sum)
-{ 
-    if (n<=0)
-        return sum; 
-    return sumArray(arr+1, n-1, sum+arr[0]); 
-}
+
+// int sumArray(int *arr, int n, int sum)
+// { 
+//     if (n<=0)
+//         return sum; 
+//     return sumArray(arr+1, n-1, sum+arr[0]); 
+// }
 
 // alternative answer : 
 // int sumArray(int* arr, int n)
