@@ -1,7 +1,7 @@
 #include <iostream> 
 #include <vector> 
 #include <algorithm> 
-using std::cout, std::cin, std::vector,std::sort; 
+using std::cout, std::cin, std::vector; 
 
 void mergeSort(vector<int>& arr,int start,int end); 
 void merge(vector<int>& arr, int start, int mid, int end); 
