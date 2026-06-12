@@ -1,18 +1,19 @@
 #include <iostream> 
 
-void printNto1(int); 
+void printEven(int); 
 int main()
 { 
     int n; 
     std::cout<< "Enter a number : "; 
     std::cin>> n; 
-    printNto1(n); 
+    printEven(n); 
 }
 
-void printNto1(int n)
+void printEven(int n)
 { 
-    if (n==0)
+    if (n<0)
         return; 
-    std::cout<< n << " "; 
-    printNto1(n-1); 
+    std::cout<< "going down the stack " << n << "\n"; 
+    printEven(n-1); 
+    std::cout<< "coming up the stack " << n << "\n "; 
 }
