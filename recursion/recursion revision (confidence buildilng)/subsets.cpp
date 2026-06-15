@@ -34,12 +34,12 @@ void solve(vector<int>& arr,vector<int>& output, int index,vector<vector<int>>& 
     if (index==arr.size()) 
     {   
         ans.push_back(output); 
-        output.pop_back(); 
         return ; 
     }
     // include
     output.push_back(arr[index]); 
     solve(arr,output,index+1,ans); 
+    output.pop_back(); 
     // exclude
     solve(arr,output,index+1,ans); 
 }

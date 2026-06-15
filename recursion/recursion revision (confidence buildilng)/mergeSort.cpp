@@ -17,6 +17,7 @@ int main()
         cout<< i << " "; 
     cout<< '\n'; 
 }
+
 void mergeSort(vector<int>& arr,int low,int high)
 { 
     if (low>=high)
