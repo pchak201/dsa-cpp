@@ -27,6 +27,7 @@ vector<vector<int>> combinationSum2(vector<int>& arr, int target)
     vector<vector<int>> ans; 
     vector<int> output; 
     int index=0; 
+    sort(arr.begin(),arr.end()); 
     solve(arr,target,index,output,ans); 
     return ans; 
 }
@@ -36,29 +37,15 @@ void solve(const vector<int>& arr, int target, int index, vector<int>& output, v
     if (index==(int)arr.size() || target <=0)
     { 
         if (target==0)
-        { 
-            vector<int> original = output; 
-            sort(output.begin(),output.end()); 
-            if (notIn(output,ans))
-                ans.push_back(original); 
-        }
+            ans.push_back(output); 
         return; 
     }
-    // Case 1 : include 
-    output.push_back(arr[index]); 
-    solve(arr,target-arr[index],index+1,output,ans); 
-    output.pop_back(); 
-    // Case 2 : exclude
-    solve(arr,target,index+1,output,ans); 
-}
-
-bool notIn(const vector<int>& output, const vector<vector<int>>& answer)
-{ 
-    for (vector<int> i : answer)
+    for (int i=index; i<arr.size(); i++)
     { 
-        sort(i.begin(),i.end()); 
-        if (i==output)
-            return false;  
+        if (i>index && arr[i]==arr[index])
+            continue; 
+        output.push_back(arr[i]); 
+        solve(arr,target-arr[i],index+1,output,ans); 
+        output.pop_back(); 
     }
-    return true; 
 }

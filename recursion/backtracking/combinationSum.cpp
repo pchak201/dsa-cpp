@@ -41,8 +41,7 @@ void solve(const vector<int>& nums,int index, int target, vector<int>& output, v
     }
     // case 1 : include it 
     output.push_back(nums[index]); 
-    target-=nums[index]; 
-    solve(nums,index,target,output,ans); 
+    solve(nums,index,target-nums[index],output,ans); 
     output.pop_back(); 
     // case 2 : exclude it
     solve(nums,index+1,target,output,ans); 
