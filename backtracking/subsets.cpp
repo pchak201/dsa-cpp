@@ -1,45 +1,40 @@
 #include <bits/stdc++.h>
-using std::cout, std::cin, std::vector; 
+using std::vector;
 
 
-vector<vector<int>> subsets(vector<int>& nums); 
-void solve(vector<int>& nums, vector<int> subset, int index, vector<vector<int>>& ans); 
+void solve(vector<int>& nums, vector<int>& output, int index, vector<vector<int>>& ans)
+{ 
+    if (index>=nums.size())
+    {
+        ans.push_back(output);
+        return; 
+    }
+    // include
+    output.push_back(nums[index]);
+    solve(nums,output,index+1,ans);
+    output.pop_back();
+    // exclude
+    solve(nums,output,index+1,ans);
+}
 
+vector<vector<int>> subsets(vector<int>& nums)
+{ 
+    vector<vector<int>> ans;
+    vector<int> output;
+    int index =0;
+    solve(nums,output,index,ans);
+    return ans;
+}
 
 int main()
 { 
-    vector<int> arr= {1,2,3}; 
-    cout<< "The power set of the given set is : \n" ; 
-    vector<vector<int>> ans= subsets(arr); 
-    for (vector<int> x : ans)
+    vector<int> nums = {1,2,3,};
+    std::cout << "The subsets are : \n";
+    vector<vector<int>> ans = subsets(nums);
+    for (vector<int> arr : ans)
     { 
-        for (int y : x )
-        { 
-            cout<< y << " "; 
-        }
-        cout<< "\n"; 
-    }
-}
-
-vector<vector<int>> subsets(vector<int>& nums) 
-{
-    vector<vector<int>> ans ;
-    vector<int> subset; 
-    int index=0; 
-    solve(nums,subset, index, ans); 
-    return ans; 
-}
-
-void solve(vector<int>& nums, vector<int> subset, int index, vector<vector<int>>& ans)
-{ 
-    if (index>=nums.size())
-    { 
-        ans.push_back(subset); 
-        return;
-    }
-    // exclude value
-    solve(nums,subset,index+1,ans); 
-    // include value
-    subset.push_back(nums[index]); 
-    solve(nums,subset,index+1,ans); 
+        for (int i : arr)
+            std::cout<< i << " "; 
+        std::cout<< "\n"; 
+    } 
 }
