@@ -1,48 +1,56 @@
-#include <iostream>
-using namespace std; 
+#include <bits/stdc++.h>
+using namespace std;
 
-bool palindromeCheck(const string&); 
-char toLower(char);  
-bool alphaNumericCheck(char); 
-
-int main()
-{ 
-    string s; 
-    cout<< "Enter a string: "; 
-    getline(cin,s); 
-    if (palindromeCheck(s)) 
-        cout<<s << " is a palindrome\n"; 
-    else 
-        cout<<s << " is not a palindrome\n"; 
-}
-
-bool palindromeCheck(const string& s)
-{ 
-    int start=0, end=s.length()-1; 
-    while (start<end)
+class Solution {
+public:
+    bool same(const vector<int>& combination, const vector<vector<int>>& ans)
     { 
-        while (start<end && !alphaNumericCheck(s[start]))
-            start++; 
-        while (start<end && !alphaNumericCheck(s[end]))
-            end--;  
-        if (toLower(s[start])!=toLower(s[end]))
-            return false ; 
-        start++; end--; 
+        for (auto arr : ans)
+        { 
+            if (arr.size()!=combination.size())
+                continue;
+
+            bool flag=true;
+            for (int i =0; i<arr.size(); i++)
+            { 
+                if (arr[i]!=combination[i])
+                { 
+                    flag=false;
+                    break;
+                }
+            }
+
+            if (flag==true)
+                return true;
+        }
+        return false;
     }
-    return true; 
-}
 
-char toLower(char ch)
-{ 
-    if (ch>='A' && ch<='Z')
-        return ch+32; 
-    return ch; 
-}
+    void solve(const vector<int>& candidates, int index, int target,
+               vector<int>& combination,
+               vector<vector<int>>& ans) {
+        if (target == 0) {
+            if (!same(combination,ans))
+                ans.push_back(combination);
+            return;
+        } else if (index == candidates.size())
+            return;
+        // include
+        if (target >= candidates[index]) {
+            combination.push_back(candidates[index]);
+            solve(candidates, index + 1, target - candidates[index],
+                  combination, ans);
+            combination.pop_back();
+        }
+        // exclude
+        solve(candidates, index + 1, target, combination, ans);
+    }
 
-bool alphaNumericCheck(char ch)
-{ 
-    ch = toLower(ch); 
-    if ((ch>='a' && ch<='z') || (ch>='0' && ch<='9'))
-        return true; 
-    return false; 
-}
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> combination;
+        int index=0;
+        solve(candidates, index, target, combination, ans);
+        return ans;
+    }
+};
